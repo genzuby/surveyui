@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render Buttons Should render without error renders correctly 1`] = `undefined`;
+
+exports[`Render Content Should render without error renders correctly 1`] = `ReactWrapper {}`;

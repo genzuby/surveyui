@@ -1,0 +1,94 @@
+import React from "react";
+import { shallow } from "enzyme";
+import "jest-styled-components";
+import "../testutils/setup";
+import { findByTestAttr, testStore } from "../testutils";
+import { initData, testAnswer } from "../testutils/testfakedata";
+import SurveyBody from "../components/SurveyBody";
+import { BODY, BODYWEB } from "../styles/BodyStyles";
+import { SurveyContext } from "../contexts/SurveyAnswerCotext";
+
+const setUp = (initialState = {}) => {
+  const store = testStore(initialState);
+  let getFirstPage, checkFirstLast, getPrevId, validateEmail;
+  let answerInfo, setAnswerInfo;
+  const props = {
+    getFirstPage
+  };
+  const wrapper = shallow(
+    <SurveyContext.Provider value={{ answerInfo, setAnswerInfo }}>
+      <SurveyBody store={store} {...props} />
+    </SurveyContext.Provider>
+  ).dive();
+  return wrapper;
+};
+
+describe("Survey Component", () => {
+  let wrapper;
+
+  beforeEach(() => {
+    const initialState = { surveylist: initData, answer: testAnswer };
+    wrapper = setUp(initialState);
+  });
+
+  describe("Should Render without errors", () => {
+    it("renders correctly", () => {
+      // const instance = wrapper.instance();
+
+      console.log(wrapper.debug())
+
+      expect(wrapper.find('.SurveyBody')).toHaveLength(1);
+    });
+
+    it("Should render 3 div as children", () => {
+      const sections = findByTestAttr(wrapper, "bodyComponentSection");
+      expect(sections).toHaveLength(3);
+    });
+  });
+
+  describe("Should do correct actions", () => {
+    it("Should display first page info correctly in a Mobile device", () => {
+      wrapper.setProps({
+        getFirstPage: "page-welcome"
+      });
+
+      expect(wrapper.find(BODY)).toHaveStyleRule(
+        "background",
+        "url(/images/welcome.jpg)"
+      );
+    });
+
+    it("Should display first page info correctly in a Browser device", () => {
+      wrapper.setProps({
+        getFirstPage: "page-welcome"
+      });
+
+      expect(wrapper.find(BODYWEB)).toHaveStyleRule(
+        "background",
+        "url(/images/welcome-web.jpg)"
+      );
+    });
+
+    it("Should display last page info correctly in a Mobile device", () => {
+      wrapper.setProps({
+        getFirstPage: "page-welcome"
+      });
+
+      expect(wrapper.find(BODY)).toHaveStyleRule(
+        "background",
+        "url(/images/thankyou.jpg)"
+      );
+    });
+
+    it("Should display last page info correctly in a Browser device", () => {
+      wrapper.setProps({
+        getFirstPage: "page-welcome"
+      });
+
+      expect(wrapper.find(BODYWEB)).toHaveStyleRule(
+        "background",
+        "url(/images/thankyou-web.jpg)"
+      );
+    });
+  });
+});

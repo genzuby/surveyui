@@ -206,7 +206,7 @@ const SurveyBody = ({ surveylist, answerSurvey }) => {
 
   const renderComponent = () => (
     <>
-      <div className="Header">
+      <div className="Header" data-test="bodyComponentSection">
         {currentInfo.heading && (
           <h1 className="Heading">{currentInfo.heading}</h1>
         )}
@@ -221,11 +221,13 @@ const SurveyBody = ({ surveylist, answerSurvey }) => {
         inputValue={inputValue}
         setInputValue={setInputValue}
         setInputNext={setInputNext}
+        data-test="bodyComponentSection"
       />
       <Buttons
         first={firstPage}
         last={lastPage}
         onHandle={{ onPrevButtonHandle, onNextButtonHandle }}
+        data-test="bodyComponentSection"
       />
     </>
   );

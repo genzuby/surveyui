@@ -1,68 +1,49 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Survey API server
 
-## Available Scripts
+react
+redux
+node-sass
+axios
+styled-components
+react-device-detect
 
-In the project directory, you can run:
+### Requirements front end:
 
-### `yarn start`
+- An initial screen explaining the survey and prompting the user to start
+- A screen for each question
+- Three possible types of questions (radio/checkbox/text input)
+- A "next" button that takes the user to the next question (or the end of the survey)
+- A "previous" button that takes the user to the previous question (or the beginning of the survey).
+- Allow the user to press the browser's back button to go back to a previous question. This has the same effect as pressing the "back" button
+- Do not pre-check or pre-fill any of the answers, the user should be forced to choose/type the answer
+- When the user chooses an option that makes him/her ineligible (i.e. "are you 18 or older?" - "No"), the survey should end, with a message saying the user is ineligible
+- When the user has answered all of the questions, the survey should end with a message thanking him/her for participating
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Observations
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- Ensure the browser's back/forwards functionality works as expected
+- The back button should be disabled or hidden in the initial screen
+- The next button should be disabled or hidden in the final screen
+- Do not allow the user to answer the next question if he/she has not answered the current one
+- When you go back, the answer you chose should be visible
+- Make sure to record which answers belong to which survey (using "surveyID", for instance)
+- There is no need to be too fancy with the persistance mechanism, simply saving to a file would work for the purposes of this challenge, but you can use whatever you're comfortable with
+- Some questions, depending on what is chosen, lead to ending the survey before all the questions are answered
+- The `survey.json` file we provided is an example, feel free to come up with your own structure, as long as it meets all the requirements
+- If you decide to use linters, make sure the linter is not complaining about errors in your code
 
-### `yarn test`
+## server start
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- yarn start
 
-### `yarn build`
+## test
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- yarn test
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## lint
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- yarn lint
 
-### `yarn eject`
+## demo
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- http://localhost:3000

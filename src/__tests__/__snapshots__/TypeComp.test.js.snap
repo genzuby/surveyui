@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component of each types for display input JSX Should render without error renders correctly 1`] = `ReactWrapper {}`;

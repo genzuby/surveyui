@@ -7,7 +7,7 @@ export const BODY = styled.div`
     props.first
       ? "rgba(0, 0, 0, 0.3)"
       : props.last
-      ? "rgba(0, 0, 0, 0.55)"
+      ? "rgba(255, 255, 255, 0.5)"
       : ""};
   background: ${props =>
     props.first
@@ -113,4 +113,10 @@ export const INPUROTHWEB = styled.div`
   label {
     font-size: 1rem;
   }
+`;
+
+// Input styles
+export const CONTENTTEXT = styled.p`
+  padding: 0 2em;
+  font-size: 1.2rem;
 `;

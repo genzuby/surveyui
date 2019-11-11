@@ -6,6 +6,28 @@ import { findByTestAttr } from "../testutils";
 import TypeComp from "../components/TypeComp";
 
 describe("Component of each types for display input JSX", () => {
+  let wrapper;
+  let type, item;
+
+  beforeEach(() => {
+    const props = {
+      type,
+      item
+    };
+    wrapper = mount(<TypeComp {...props} />);
+  });
+
+  describe("Should render without error", () => {
+    it("renders correctly", () => {
+      expect(wrapper).toMatchSnapshot();
+    });
+
+    it("should render one input group", () => {
+      const inputGroup = findByTestAttr(wrapper, "typeCompForm");
+      expect(inputGroup.length).toBe(1);
+    });
+  });
+
   describe("Text Input", () => {
     const item = {
       questionID: "question-email",
@@ -13,18 +35,10 @@ describe("Component of each types for display input JSX", () => {
       question: "What is your email address?",
       next: "question-age"
     };
-    const type = "Text";
-
-    const wrapper = mount(<TypeComp type={type} item={item} />);
-
-    it("Should render without errors", () => {
-      const component = findByTestAttr(wrapper, "typeCompForm");
-      expect(component.length).toBe(1);
-    });
-
     it("Should render input when type is Text ", () => {
-      const component = findByTestAttr(wrapper, "typeCompTextInput");
-      expect(component.find("Text").length).toBe(1);
+      wrapper.setProps({ type: "Text", item });
+      expect(wrapper.prop("type")).toEqual("Text");
+      expect(wrapper.find("input")).toHaveLength(1);
     });
   });
 
@@ -46,18 +60,11 @@ describe("Component of each types for display input JSX", () => {
       ],
       next: "question-problems"
     };
-    const type = "Radio";
-
-    const wrapperradio = mount(<TypeComp type={type} item={item} />);
-
-    it("Should render without errors", () => {
-      const component = findByTestAttr(wrapperradio, "typeCompForm");
-      expect(component.length).toBe(1);
-    });
 
     it("Should render input when type is Radio ", () => {
-      const component = findByTestAttr(wrapperradio, "typeCompEtcInput");
-      expect(component.length).toBe(2);
+      wrapper.setProps({ type: "Radio", item });
+      expect(wrapper.prop("type")).toEqual("Radio");
+      expect(wrapper.find("input")).toHaveLength(2);
     });
   });
 
@@ -94,18 +101,11 @@ describe("Component of each types for display input JSX", () => {
       ],
       next: "page-finish"
     };
-    const type = "Checkbox";
-
-    const wrappercheck = mount(<TypeComp type={type} item={item} />);
-
-    it("Should render without errors", () => {
-      const component = findByTestAttr(wrappercheck, "typeCompForm");
-      expect(component.length).toBe(1);
-    });
 
     it("Should render input when type is Radio ", () => {
-      const component = findByTestAttr(wrappercheck, "typeCompEtcInput");
-      expect(component.length).toBe(6);
+      wrapper.setProps({ type: "Checkbox", item });
+      expect(wrapper.prop("type")).toEqual("Checkbox");
+      expect(wrapper.find("input")).toHaveLength(6);
     });
   });
 });

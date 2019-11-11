@@ -16,10 +16,18 @@ const Buttons = ({ first, last, onHandle }) => {
     if (isMobile) {
       return (
         <>
-          <BUTTON available={!first} onClick={onPrevButtonHandle}>
+          <BUTTON
+            available={!first}
+            onClick={onPrevButtonHandle}
+            data-test="prevBtnComponent"
+          >
             ◁ Previous
           </BUTTON>
-          <BUTTON available={!last} onClick={onNextButtonHandle}>
+          <BUTTON
+            available={!last}
+            onClick={onNextButtonHandle}
+            data-test="nextBtnComponent"
+          >
             Next ▷
           </BUTTON>
         </>
@@ -31,10 +39,16 @@ const Buttons = ({ first, last, onHandle }) => {
             available={!first}
             onClick={onPrevButtonHandle}
             style={styles}
+            data-test="prevBtnComponent"
           >
             ◁ Previous
           </BUTTON>
-          <BUTTON available={!last} onClick={onNextButtonHandle} style={styles}>
+          <BUTTON
+            available={!last}
+            onClick={onNextButtonHandle}
+            style={styles}
+            data-test="nextBtnComponent"
+          >
             Next ▷
           </BUTTON>
         </>

@@ -58,17 +58,13 @@ const TypeComp = ({ type, item, inputValue, setInputValue, setInputNext }) => {
         return item.choices.map((val, i) => {
           if (isMobile) {
             return (
-              <INPUROTH key={i} data-test="typeCompEtcInput" type={inputType}>
+              <INPUROTH key={i} type={inputType}>
                 {renderCheckRadio(val, inputType, groupName)}
               </INPUROTH>
             );
           } else {
             return (
-              <INPUROTHWEB
-                key={i}
-                data-test="typeCompEtcInput"
-                type={inputType}
-              >
+              <INPUROTHWEB key={i} type={inputType}>
                 {renderCheckRadio(val, inputType, groupName)}
               </INPUROTHWEB>
             );
@@ -82,7 +78,6 @@ const TypeComp = ({ type, item, inputValue, setInputValue, setInputNext }) => {
               onChange={e => setInputValue(e.target.value)}
               value={inputValue}
               placeholder="Please enter your e-mail"
-              data-test="typeCompTextInput"
             />
           );
         } else if (isBrowser) {
@@ -93,7 +88,6 @@ const TypeComp = ({ type, item, inputValue, setInputValue, setInputNext }) => {
               style={styles}
               value={inputValue}
               placeholder="Please enter your e-mail"
-              data-test="typeCompTextInput"
             />
           );
         }
@@ -101,7 +95,11 @@ const TypeComp = ({ type, item, inputValue, setInputValue, setInputNext }) => {
     }
   };
 
-  return <div className="TypeComp">{renderComp()}</div>;
+  return (
+    <div className="TypeComp" data-test="typeCompForm">
+      {renderComp()}
+    </div>
+  );
 };
 
 export default TypeComp;
